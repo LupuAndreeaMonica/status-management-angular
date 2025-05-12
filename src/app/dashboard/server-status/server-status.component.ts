@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 
 @Component({
@@ -8,8 +8,31 @@ import {DashboardService} from "../dashboard.service";
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css'
 })
-export class ServerStatusComponent {
-  constructor(private dashboard: DashboardService) {
+export class ServerStatusComponent implements OnInit{
+  currentStatus: 'online' | 'offline' | 'unknown' = 'offline' // this.dashboard.currentStatus;
+  // private interval?: ReturnType<typeof setInterval>
+  private destroyRef = inject(DestroyRef);
+
+  constructor() {} // private dashboard: DashboardService
+  ngOnInit() {
+    // this.interval =  setInterval
+    const interval = setInterval(() => {
+      const rnd = Math.random();
+      if (rnd < 0.5) {
+        this.currentStatus = 'online'
+      } else if (rnd < 0.9) {
+        this.currentStatus = 'offline'
+      } else {
+        this.currentStatus = 'unknown'
+      }
+    }, 5000);
+    this.destroyRef.onDestroy(() => {
+      clearInterval(interval)
+    })
   }
-  currentStatus = this.dashboard.currentStatus;
+
+  // ngOnDestroy() {
+  //   clearTimeout(this.interval);
+  // }
+
 }
