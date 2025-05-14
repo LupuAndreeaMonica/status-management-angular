@@ -1,4 +1,13 @@
-import {Component, ElementRef, HostListener, inject, input, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  contentChild,
+  ContentChild,
+  ElementRef,
+  HostListener,
+  inject,
+  input,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'app-control', // host element
@@ -17,10 +26,15 @@ export class ControlComponent {
   // @HostListener('click') onClick() {
   //   console.log('clicked')
   // }
+  // @ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+  private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input')
+
   label = input<string>()
   private el = inject(ElementRef);
   onClick() {
     console.log('clicked')
     console.log('el', this.el)
+    // console.log(this.control)
+    console.log(this.control())
   }
 }
