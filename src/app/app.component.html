@@ -1,25 +1,36 @@
-<app-header/>
-<main>
-  <div id="dashboard">
-    <app-dashboard-item
-            [image]="{src: 'status.png', alt: 'signal symbol'}"
-            title="Server status"
-    >
-      <app-server-status/>
-    </app-dashboard-item>
+<!--<app-header/>-->
+<!--<main>-->
+<!--  <div id="dashboard">-->
+<!--    <app-dashboard-item-->
+<!--            [image]="{src: 'status.png', alt: 'signal symbol'}"-->
+<!--            title="Server status"-->
+<!--    >-->
+<!--      <app-server-status/>-->
+<!--    </app-dashboard-item>-->
 
-    <app-dashboard-item
-            [image]="{src: 'globe.png', alt: 'globe symbol'}"
-            title="Traffic"
-    >
-      <app-traffic/>
-    </app-dashboard-item>
+<!--    <app-dashboard-item-->
+<!--            [image]="{src: 'globe.png', alt: 'globe symbol'}"-->
+<!--            title="Traffic"-->
+<!--    >-->
+<!--      <app-traffic/>-->
+<!--    </app-dashboard-item>-->
 
-    <app-dashboard-item
-            [image]="{src: 'list.png', alt: 'list'}"
-            title="Support Tickets"
-    >
-      <app-support-tickets/>
-    </app-dashboard-item>
-  </div>
-</main>
+<!--    <app-dashboard-item-->
+<!--            [image]="{src: 'list.png', alt: 'list'}"-->
+<!--            title="Support Tickets"-->
+<!--    >-->
+<!--      <app-support-tickets/>-->
+<!--    </app-dashboard-item>-->
+<!--  </div>-->
+<!--</main>-->
+<div id="inputs">
+  <p>
+    <label>Width</label>
+    <input type="number" step="1.0" [(ngModel)]="rectSize.width" />
+  </p>
+  <p>
+    <label>Height</label>
+    <input type="number" step="1.0" [(ngModel)]="rectSize.height" />
+  </p>
+</div>
+<app-rect [(size)]="rectSize"/>
